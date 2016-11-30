@@ -43,10 +43,10 @@ async def forum_feed():
         try:
             for text in oaforum.feed():
                 await neko.send_message(channel, text)
-            await asyncio.sleep(600)
+            await asyncio.sleep(300)
         except Exception as e:
             print(e)
-            print('Exception while getting forum feed')
+            print('Exception while getting forum feed.')
 
 @neko.event
 async def on_ready():
@@ -71,5 +71,5 @@ async def on_error():
     print('Error occured.')
 
 neko.loop.create_task(sv_update())
-neko.loop.create_task(forum_feed())
+#  neko.loop.create_task(forum_feed())
 neko.run(token)
