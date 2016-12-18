@@ -8,6 +8,14 @@ other Discord bots.
 You can find info about the OpenArena game at http://www.openarena.ws. To join
 the Discord server you can use this invite link: https://discord.me/openarena.
 
+Bot Commands
+------------
+
+Neko accepts some commands in private chat:
+.when <text>
+.last <num_hours>
+.server <text>
+
 Running
 -------
 
