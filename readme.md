@@ -12,9 +12,9 @@ Bot Commands
 ------------
 
 Neko accepts the following commands in private chat:
-.when <text> -- shows last time players have appeared containing <text> in their name
-.last <num_hours> -- shows the total number of players that have appeared in the last <num_hours> hours
-.sv <text> -- shows online servers containing <text> in their name
+- .when &lt;text&gt; -- shows last time players have appeared containing &lt;text&gt; in their name
+- .last &lt;numhours&gt; -- shows the total number of players that have appeared in the last &lt;numhours&gt; hours
+- .sv &lt;text&gt; -- shows online servers containing &lt;text&gt; in their name
 
 Running
 -------
