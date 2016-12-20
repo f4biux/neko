@@ -11,10 +11,10 @@ the Discord server you can use this invite link: https://discord.me/openarena.
 Bot Commands
 ------------
 
-Neko accepts some commands in private chat:
-.when <text>
-.last <num_hours>
-.server <text>
+Neko accepts the following commands in private chat:
+.when <text> -- shows last time players have appeared containing <text> in their name
+.last <num_hours> -- shows the total number of players that have appeared in the last <num_hours> hours
+.sv <text> -- shows online servers containing <text> in their name
 
 Running
 -------

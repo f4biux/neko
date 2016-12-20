@@ -7,6 +7,7 @@ import dpmaster
 import oaforum
 import stats
 import datetime
+import argparse
 
 SLEEP_TIME = 60
 
@@ -29,11 +30,16 @@ stats.Load()
 async def sv_update():
     try:
         await neko.wait_until_ready()
+        channel = neko.get_channel(ch_svlist)
 
-        #TODO: clear previous messages, either by a server command or by storing message objects and then deleting them on next start
+        # clear previous neko messages on the servers channel
+        try:
+            await neko.purge_from(channel, limit=100, check=lambda m: m.author == neko.user)
+        except Exception as exm:
+            print(exm)
+
         message = None
         s_message = None
-        channel = neko.get_channel(ch_svlist)
         while not neko.is_closed:
             try:
                 # neko is typing :)
@@ -117,14 +123,13 @@ async def on_message(message):
                 if len(answer) <= 0:
                     return
             # ask server name
-            elif message.content.startswith('.server '):
-                answer = stats.QueryServers(message.content[8:])
+            elif message.content.startswith('.sv '):
+                answer = stats.QueryServers(message.content[4:])
                 if len(answer) <= 0:
-                    answer = 'No matches found for *{}*\n'.format(message.content[8:])
+                    answer = 'No matches found for *{}*\n'.format(message.content[4:])
             #unsupported command
             else:
                 return
-            #TODO: check message size before sending
             await neko.send_message(message.channel, answer)
     except Exception as ex:
         print(ex)

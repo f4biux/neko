@@ -12,9 +12,8 @@ import shutil
 # 1M players should be safely less than 50Mb
 # 10K players should be safely less than 500Kb
 # 2K players should be around 100Kb
-MAX_NUM_PLAYERS = 2000
+MAX_NUM_PLAYERS = 4000
 MAX_QUERY_RESULTS = 50
-MAX_NUM_SERVERS = 10000
 
 # players = OrderedDict([('player1_name', player1_timestamp), ..., ('playerN_name', playerN_timestamp)])
 players = OrderedDict()
@@ -38,6 +37,8 @@ smart_chars = dict({'4':'a', '^':'a', '@':'a', \
                     '7':'t', '+':'t', \
                     '2':'z'})
 def smart_string(string):
+    if len(string) < 2:
+        return string
     smarter_string = string.upper().lower()
     for i, c in enumerate(smarter_string):
         if c in smart_chars:
@@ -114,8 +115,8 @@ def Update(dpmaster_servers):
             if len(sv.players) > 0:
                 players_list += ': {}'.format(sv.players[0])
                 for p in sv.players[1:]:
-                    players_list += ' | {}'.format(p)
-            servers[sv.name] = ' ({}) [{}] has {} {}{}'.format(sv.hostname, sv.map, len(sv.players), plinfo, players_list)
+                    players_list += ' *|* {}'.format(p)
+            servers[sv.name] = ' ({}) [{}] has `{}` {}{}'.format(sv.hostname, sv.map, len(sv.players), plinfo, players_list)
             # limit loop?
             #c += len(sv.players)
             #if c < MAX_NUM_PLAYERS:
